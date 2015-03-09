@@ -1,0 +1,33 @@
+#!/sbin/runscript
+# Copyright 2015 Mikhail Klementyev jollheef<AT>riseup.net
+# Distributed under the terms of the GNU General Public License v3
+# $Header: $
+
+BIN_NAME=battery-watcher
+BIN_DESC="battery watcher"
+
+DAEMON_BIN=/usr/bin/${BIN_NAME}
+DAEMON_ARGS=""
+DAEMON_PIDFILE=/var/run/${BIN_NAME}.pid
+DAEMON_LOGFILE=/var/log/${BIN_NAME}.log
+
+start()
+{
+    ebegin "Starting ${BIN_DESC}"
+
+    start-stop-daemon --start --quiet --background \
+		      --make-pidfile --pidfile ${DAEMON_PIDFILE} \
+		      --startas /bin/bash -- -c \
+		      "exec ${DAEMON_BIN} ${DAEMON_ARGS} > ${DAEMON_LOGFILE} 2>&1"
+    
+    eend $?
+}
+
+stop()
+{
+    ebegin "Stopping ${BIN_DESC}"
+
+    start-stop-daemon --stop --pidfile ${DAEMON_PIDFILE}
+
+    eend $?
+}
