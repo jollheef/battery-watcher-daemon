@@ -20,6 +20,3 @@ For example:
 * Execute pm-suspend on 30%
 
     DAEMON_ARGS="30 pm-suspend"
-
-# TODO
-Write ebuild.
