@@ -7,7 +7,6 @@ BIN_NAME=battery-watcher
 BIN_DESC="battery watcher"
 
 DAEMON_BIN=/usr/bin/${BIN_NAME}
-DAEMON_ARGS=""
 DAEMON_PIDFILE=/var/run/${BIN_NAME}.pid
 DAEMON_LOGFILE=/var/log/${BIN_NAME}.log
 
